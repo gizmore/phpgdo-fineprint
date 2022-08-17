@@ -17,7 +17,7 @@ use GDO\UI\GDT_Link;
 final class Module_Fineprint extends GDO_Module
 {
 	public int $priority = 100;
-	public string $license = 'Fineprint-Three-Clause-Rule';
+	public string $license = 'Fineprint-3-Clause';
 	
 	public function getDependencies() : array
 	{
@@ -26,7 +26,6 @@ final class Module_Fineprint extends GDO_Module
 			'DOMPDF',
 			'JQueryAutocomplete',
 		];
-		
 	}
 	
 	public function onLoadLanguage() : void
