@@ -27,9 +27,10 @@ final class FromHTML extends MethodForm
 		$form->addFields(
 			GDT_EnumNoI18n::make('size')->enumValues('A4', 'A3')->initial('A4'),
 			GDT_EnumNoI18n::make('format')->enumValues('portrait', 'landscape')->initial('portrait'),
-			GDT_Message::make('input')->notNull(),
+			GDT_Message::make('input')->notNull()->label('html'),
 		);
 		$form->actions()->addField(GDT_Submit::make());
+		$form->targetBlank();
 	}
 	
 	public function formValidated(GDT_Form $form)
