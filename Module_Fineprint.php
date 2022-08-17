@@ -5,6 +5,13 @@ use GDO\Core\GDO_Module;
 use GDO\UI\GDT_Page;
 use GDO\UI\GDT_Link;
 
+/**
+ * Demo Site for GDOv7 / WeChall.
+ * 
+ * @author gizmore
+ * @version 7.0.1
+ * @since 7.0.1
+ */
 final class Module_Fineprint extends GDO_Module
 {
 	public function getDependencies() : array
