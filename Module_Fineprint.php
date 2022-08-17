@@ -7,6 +7,8 @@ use GDO\UI\GDT_Link;
 
 /**
  * Demo Site for GDOv7 / WeChall.
+ * Render arbritrary Html as Pdf.
+ * Uses phpgdo-dompdf to achieve this.
  * 
  * @author gizmore
  * @version 7.0.1
@@ -14,6 +16,9 @@ use GDO\UI\GDT_Link;
  */
 final class Module_Fineprint extends GDO_Module
 {
+	public int $priority = 100;
+	public string $license = 'Fineprint-Three-Clause-Rule';
+	
 	public function getDependencies() : array
 	{
 		return [
@@ -31,8 +36,11 @@ final class Module_Fineprint extends GDO_Module
 	
 	public function onInitSidebar() : void
 	{
-		$link = GDT_Link::make()->href(href('Fineprint', 'FromHTML'))->label('link_fineprint_from_html');
-		GDT_Page::instance()->rightBar()->addField($link);
+		$bar = GDT_Page::instance()->rightBar();
+		$bar->addFields(
+			GDT_Link::make()->href(href('Fineprint', 'Home'))->label('mt_fineprint_home'),
+			GDT_Link::make()->href(href('Fineprint', 'FromHTML'))->label('link_fineprint_from_html'),
+		);
 	}
 	
 }
