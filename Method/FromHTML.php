@@ -8,7 +8,7 @@ use GDO\UI\GDT_Message;
 use GDO\DOMPDF\Module_DOMPDF;
 use GDO\Core\GDT_EnumNoI18n;
 use GDO\DOMPDF\GDT_PDF;
-use GDO\UI\GDT_HTML;
+use GDO\Form\GDT_AntiCSRF;
 
 /**
  * Convert HTML to PDF. 
@@ -28,6 +28,7 @@ final class FromHTML extends MethodForm
 			GDT_EnumNoI18n::make('size')->enumValues('A4', 'A3')->initial('A4'),
 			GDT_EnumNoI18n::make('format')->enumValues('portrait', 'landscape')->initial('portrait'),
 			GDT_Message::make('input')->notNull()->label('html'),
+			GDT_AntiCSRF::make(),
 		);
 		$form->actions()->addField(GDT_Submit::make());
 		$form->targetBlank();
