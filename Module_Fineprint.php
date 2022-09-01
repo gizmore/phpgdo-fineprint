@@ -22,9 +22,12 @@ final class Module_Fineprint extends GDO_Module
 	public function getDependencies() : array
 	{
 		return [
+			'Admin',
 			'Classic',
 			'DOMPDF',
 			'JQueryAutocomplete',
+			'Login',
+			'Perf',
 		];
 	}
 	
