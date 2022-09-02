@@ -31,7 +31,7 @@ final class FromHTML extends MethodForm
 			GDT_AntiCSRF::make(),
 		);
 		$form->actions()->addField(GDT_Submit::make());
-		$form->targetBlank();
+// 		$form->targetBlank(); # @TODO: weird bug! Opens a blank PDF in fineprint/fromhtml
 	}
 	
 	public function formValidated(GDT_Form $form)
