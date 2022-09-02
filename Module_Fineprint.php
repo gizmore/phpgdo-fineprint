@@ -24,8 +24,12 @@ final class Module_Fineprint extends GDO_Module
 		return [
 			'Admin',
 			'Classic',
+			'Contact',
+			'CSS',
 			'DOMPDF',
+			'Javascript',
 			'JQueryAutocomplete',
+			'Licenses',
 			'Login',
 			'Perf',
 		];
