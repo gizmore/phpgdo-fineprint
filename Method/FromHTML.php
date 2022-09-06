@@ -9,6 +9,7 @@ use GDO\DOMPDF\Module_DOMPDF;
 use GDO\Core\GDT_EnumNoI18n;
 use GDO\DOMPDF\GDT_PDF;
 use GDO\Form\GDT_AntiCSRF;
+use GDO\Core\Application;
 
 /**
  * Convert HTML to PDF. 
@@ -40,6 +41,11 @@ final class FromHTML extends MethodForm
 		$pdf = GDT_PDF::makeWithHTML($html);
 		$pdf->size($this->getPDFSize());
 		$pdf->orientation($this->getPDFFormat());
+		if (Application::$INSTANCE->isUnitTests())
+		{
+			echo "Streaming PDF\n";
+			return null;
+		}
 		$pdf->stream();
 	}
 	
