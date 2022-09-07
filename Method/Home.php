@@ -6,6 +6,5 @@ use GDO\Core\WithFileCache;
 
 final class Home extends MethodPage
 {
-	use WithFileCache;
 	
 }
