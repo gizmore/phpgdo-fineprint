@@ -18,7 +18,7 @@ use GDO\Core\Application;
  */
 final class FromHTML extends MethodForm
 {
-	public function onInit() : void
+	public function onMethodInit()
 	{
 		Module_DOMPDF::instance()->includeVendor();
 	}
