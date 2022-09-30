@@ -44,8 +44,8 @@ final class Module_Fineprint extends GDO_Module
 	{
 		$bar = GDT_Page::instance()->rightBar();
 		$bar->addFields(
-			GDT_Link::make()->href(href('Fineprint', 'Home'))->label('mt_fineprint_home'),
-			GDT_Link::make()->href(href('Fineprint', 'FromHTML'))->label('link_fineprint_from_html'),
+			GDT_Link::make()->href(href('Fineprint', 'Home'))->text('mt_fineprint_home'),
+			GDT_Link::make()->href(href('Fineprint', 'FromHTML'))->text('link_fineprint_from_html'),
 		);
 	}
 	
