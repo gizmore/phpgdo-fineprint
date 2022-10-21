@@ -18,6 +18,11 @@ use GDO\Core\Application;
  */
 final class FromHTML extends MethodForm
 {
+	public function isUserRequired() : bool
+	{
+		return false;
+	}
+	
 	public function onMethodInit()
 	{
 		Module_DOMPDF::instance()->includeVendor();
