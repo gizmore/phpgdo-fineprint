@@ -1,5 +1,6 @@
 <?php
 namespace GDO\Fineprint\tpl\page;
+
 use GDO\UI\GDT_Link;
 
 ?>

@@ -2,24 +2,25 @@
 namespace GDO\Fineprint;
 
 use GDO\Core\GDO_Module;
-use GDO\UI\GDT_Page;
 use GDO\UI\GDT_Link;
+use GDO\UI\GDT_Page;
 
 /**
  * Demo Site for GDOv7 / WeChall.
  * Render arbritrary Html as Pdf.
  * Uses phpgdo-dompdf to achieve this.
- * 
- * @author gizmore
+ *
  * @version 7.0.1
  * @since 7.0.1
+ * @author gizmore
  */
 final class Module_Fineprint extends GDO_Module
 {
+
 	public int $priority = 100;
 	public string $license = 'Fineprint-3-Clause';
-	
-	public function getDependencies() : array
+
+	public function getDependencies(): array
 	{
 		return [
 			'Admin',
@@ -34,13 +35,13 @@ final class Module_Fineprint extends GDO_Module
 			'Perf',
 		];
 	}
-	
-	public function onLoadLanguage() : void
+
+	public function onLoadLanguage(): void
 	{
 		$this->loadLanguage('lang/fineprint');
 	}
-	
-	public function onInitSidebar() : void
+
+	public function onInitSidebar(): void
 	{
 		$bar = GDT_Page::instance()->rightBar();
 		$bar->addFields(
@@ -48,5 +49,5 @@ final class Module_Fineprint extends GDO_Module
 			GDT_Link::make()->href(href('Fineprint', 'FromHTML'))->text('link_fineprint_from_html'),
 		);
 	}
-	
+
 }

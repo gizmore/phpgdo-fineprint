@@ -1,33 +1,34 @@
 <?php
 namespace GDO\Fineprint\Method;
 
-use GDO\Form\GDT_Form;
-use GDO\Form\MethodForm;
-use GDO\Form\GDT_Submit;
-use GDO\UI\GDT_Message;
-use GDO\DOMPDF\Module_DOMPDF;
+use GDO\Core\Application;
 use GDO\Core\GDT_EnumNoI18n;
 use GDO\DOMPDF\GDT_PDF;
+use GDO\DOMPDF\Module_DOMPDF;
 use GDO\Form\GDT_AntiCSRF;
-use GDO\Core\Application;
+use GDO\Form\GDT_Form;
+use GDO\Form\GDT_Submit;
+use GDO\Form\MethodForm;
+use GDO\UI\GDT_Message;
 
 /**
- * Convert HTML to PDF. 
- * 
+ * Convert HTML to PDF.
+ *
  * @author gizmore
  */
 final class FromHTML extends MethodForm
 {
-	public function isUserRequired() : bool
+
+	public function isUserRequired(): bool
 	{
 		return false;
 	}
-	
+
 	public function onMethodInit()
 	{
 		Module_DOMPDF::instance()->includeVendor();
 	}
-	
+
 	public function createForm(GDT_Form $form): void
 	{
 		$form->addFields(
@@ -39,7 +40,7 @@ final class FromHTML extends MethodForm
 		$form->actions()->addField(GDT_Submit::make());
 // 		$form->targetBlank(); # @TODO: weird bug! Opens a blank PDF in fineprint/fromhtml
 	}
-	
+
 	public function formValidated(GDT_Form $form)
 	{
 		$html = $this->getPDFHTML();
@@ -53,21 +54,20 @@ final class FromHTML extends MethodForm
 		}
 		$pdf->stream();
 	}
-	
-	private function getPDFHTML() : string
+
+	private function getPDFHTML(): string
 	{
 		return $this->gdoParameterVar('input');
 	}
-	
-	private function getPDFSize() : string
+
+	private function getPDFSize(): string
 	{
 		return $this->gdoParameterVar('size');
 	}
-	
-	private function getPDFFormat() : string
+
+	private function getPDFFormat(): string
 	{
 		return $this->gdoParameterVar('format');
 	}
-	
-}
 
+}
