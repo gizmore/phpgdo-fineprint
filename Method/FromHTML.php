@@ -1,7 +1,9 @@
 <?php
+declare(strict_types=1);
 namespace GDO\Fineprint\Method;
 
 use GDO\Core\Application;
+use GDO\Core\GDT;
 use GDO\Core\GDT_EnumNoI18n;
 use GDO\DOMPDF\GDT_PDF;
 use GDO\DOMPDF\Module_DOMPDF;
@@ -14,6 +16,8 @@ use GDO\UI\GDT_Message;
 /**
  * Convert HTML to PDF.
  *
+ * @version 7.0.3
+ * @since 6.4.0
  * @author gizmore
  */
 final class FromHTML extends MethodForm
@@ -24,9 +28,10 @@ final class FromHTML extends MethodForm
 		return false;
 	}
 
-	public function onMethodInit()
+	public function onMethodInit(): ?GDT
 	{
 		Module_DOMPDF::instance()->includeVendor();
+		return null;
 	}
 
 	public function createForm(GDT_Form $form): void
@@ -38,10 +43,9 @@ final class FromHTML extends MethodForm
 			GDT_AntiCSRF::make(),
 		);
 		$form->actions()->addField(GDT_Submit::make());
-// 		$form->targetBlank(); # @TODO: weird bug! Opens a blank PDF in fineprint/fromhtml
 	}
 
-	public function formValidated(GDT_Form $form)
+	public function formValidated(GDT_Form $form): GDT
 	{
 		$html = $this->getPDFHTML();
 		$pdf = GDT_PDF::makeWithHTML($html);
@@ -50,9 +54,11 @@ final class FromHTML extends MethodForm
 		if (Application::$INSTANCE->isUnitTests())
 		{
 			echo "Streaming PDF\n";
-			return null;
+			flush();
+			return $pdf;
 		}
 		$pdf->stream();
+		return $pdf;
 	}
 
 	private function getPDFHTML(): string
