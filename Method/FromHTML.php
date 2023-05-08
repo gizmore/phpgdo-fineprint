@@ -34,7 +34,7 @@ final class FromHTML extends MethodForm
 		return null;
 	}
 
-	public function createForm(GDT_Form $form): void
+	protected function createForm(GDT_Form $form): void
 	{
 		$form->addFields(
 			GDT_EnumNoI18n::make('size')->enumValues('A4', 'A3')->initial('A4'),
