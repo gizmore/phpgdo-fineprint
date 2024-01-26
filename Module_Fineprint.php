@@ -2,6 +2,9 @@
 namespace GDO\Fineprint;
 
 use GDO\Core\GDO_Module;
+use GDO\Core\Method;
+use GDO\Fineprint\Method\Home;
+use GDO\UI\GDT_Headline;
 use GDO\UI\GDT_Link;
 use GDO\UI\GDT_Page;
 
@@ -31,10 +34,16 @@ final class Module_Fineprint extends GDO_Module
 			'Javascript',
 			'JQueryAutocomplete',
 			'Licenses',
+//            'LoC',
 			'Login',
 			'Perf',
 		];
 	}
+
+    public function defaultMethod(): Method
+    {
+        return Home::make();
+    }
 
 	public function onLoadLanguage(): void
 	{
@@ -42,7 +51,11 @@ final class Module_Fineprint extends GDO_Module
 	}
 
 	public function onInitSidebar(): void
-	{
+    {
+        $bar = GDT_Page::instance()->topBar();
+        $bar->addFields(
+            GDT_Link::make()->href(href('Fineprint', 'Home'))->textRaw(sitename()),
+        );
 		$bar = GDT_Page::instance()->rightBar();
 		$bar->addFields(
 			GDT_Link::make()->href(href('Fineprint', 'Home'))->text('mt_fineprint_home'),
